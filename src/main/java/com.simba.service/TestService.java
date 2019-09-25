@@ -1,7 +1,11 @@
 package com.simba.service;
 
-@FunctionalInterface
-public interface TestService {
+import java.util.function.Predicate;
+import org.springframework.stereotype.Service;
 
-  void test();
+@Service
+@FunctionalInterface
+public interface TestService extends Predicate<Integer > {
+  @Override
+  boolean test(Integer integer);
 }
