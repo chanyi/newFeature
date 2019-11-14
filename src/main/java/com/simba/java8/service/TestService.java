@@ -1,4 +1,4 @@
-package com.simba.service;
+package com.simba.java8.service;
 
 import java.util.function.Predicate;
 import org.springframework.stereotype.Service;

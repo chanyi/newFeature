@@ -1,7 +1,6 @@
-package com.simba.service.impl;
+package com.simba.java8.service.impl;
 
-import com.simba.controller.TestController;
-import com.simba.service.TestService;
+import com.simba.java8.service.TestService;
 
 public class TestServiceImpl implements TestService {
 

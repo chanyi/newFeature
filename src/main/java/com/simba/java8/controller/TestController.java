@@ -1,16 +1,13 @@
-package com.simba.controller;
+package com.simba.java8.controller;
 
-import com.simba.model.TestModel;
-import com.simba.service.TestService;
+import com.simba.java8.model.TestModel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import javax.persistence.criteria.CriteriaBuilder.In;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.apache.commons.lang3.ArrayUtils;
 
 public class TestController {
@@ -44,5 +41,14 @@ public class TestController {
   //custom filter
   public static <T> List<T> customFilter(List<T> lists,Predicate<T> predicate){
     return lists.stream().filter(predicate).collect(Collectors.toList());
+  }
+
+  //获取list中的类的某个字段
+  public String getFiled(){
+    List<TestModel> testModelList = new ArrayList<>();
+    String testModelName = testModelList.stream()
+        .map(testModel->testModel.getTestName())
+        .collect(Collectors.joining(","));
+    return testModelName;
   }
 }
