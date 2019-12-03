@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -169,13 +170,36 @@ public class StreamController {
     //parallel将当前流变为新的并行流或者创建一个新流
     System.out.println("-----------------------------");
     list.stream().parallel().forEach(System.out::print);
-    //并行流，在大数据并行的情况下性能要高,但是并不能保证顺序
+    //并行流（底层使用forkjoinpool，采用workStealing算法，提高效率），forkJoin在jdk1.7时被引入
+    // 在大数据并行的情况下性能要高,但是并不能保证顺序
     System.out.println("-----------------------------");
     list.parallelStream().forEach(System.out::print);
     System.out.println("-----------------------------");
     //按照原来的顺序打印出来，但是会影响效率
     list.parallelStream().forEachOrdered(System.out::print);
     System.out.println("-----------------------------");
+  }
+
+  /**
+   * Stream过滤
+   * @return
+   */
+  @Test
+  public void testStreamFilter(){
+    List<String >list = initStringList();
+    list = list.stream().filter(s->s.equals("a")).collect(Collectors.toList());
+    System.out.println(list);
+  }
+
+  /**
+   * Stream的map方法
+   * @return
+   */
+  @Test
+  public void testStreamMap(){
+    List<String >list = initStringList();
+    list = list.stream().map(s->s+"sss").collect(Collectors.toList());
+    System.out.println(list);
   }
 
 
