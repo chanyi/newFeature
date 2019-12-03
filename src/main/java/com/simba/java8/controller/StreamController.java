@@ -22,6 +22,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 //@ContextConfiguration(locations = ("classpath:applicationContext.xml"))
 @RunWith(SpringRunner.class)
 @SpringBootTest
+/**
+ * stream操作
+ *    流操作的两个基本特点
+ *        1、pipelining
+ *            中间操作可以返回流对象本身，类似访问者模式，多个操作串联成一个管道
+ *            优点：
+ *              可以做延迟执行（laziness（sleep(1000)））
+ *              短路（short-circuiting）(||计算时，如果前面的值为true，则后面的运算不用考虑，被短路了)
+ *        2、内部迭代
+ *
+ */
 public class StreamController {
 
   @Autowired
@@ -147,6 +158,25 @@ public class StreamController {
     System.out.println(map);
   }
 
+  /**
+   * 内部迭代
+   * @return
+   */
+  @Test
+  public void innerIterator(){
+    List<String> list = initStringList();
+    list.stream().forEach(System.out::print);
+    //parallel将当前流变为新的并行流或者创建一个新流
+    System.out.println("-----------------------------");
+    list.stream().parallel().forEach(System.out::print);
+    //并行流，在大数据并行的情况下性能要高,但是并不能保证顺序
+    System.out.println("-----------------------------");
+    list.parallelStream().forEach(System.out::print);
+    System.out.println("-----------------------------");
+    //按照原来的顺序打印出来，但是会影响效率
+    list.parallelStream().forEachOrdered(System.out::print);
+    System.out.println("-----------------------------");
+  }
 
 
   private List<Person> initPersonList (){
