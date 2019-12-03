@@ -1,6 +1,6 @@
 package com.simba.java8.model;
 
-public class Person {
+public class Person extends EmptyPerson{
 
   private Long id;
   private String name;
@@ -39,6 +39,14 @@ public class Person {
     this.address = address;
   }
 
+  public void specialObject(final Person person){
+    System.out.println("specialObject");
+  }
+
+  public void specialClass(){
+    System.out.println("specialClass");
+  }
+
   @Override
   public String toString() {
     return "Person{" +
@@ -47,5 +55,16 @@ public class Person {
         ", age=" + age +
         ", address='" + address + '\'' +
         '}';
+  }
+
+  public Person() {
+    return;
+  }
+  public static void staticMethod(Person person){
+    System.out.println("静态方法");
+  }
+
+  public static void staticMethodString(String string){
+    System.out.println("静态方法");
   }
 }
