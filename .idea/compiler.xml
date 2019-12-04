@@ -7,11 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="newFeature" />
-        <module name="newFeature1" />
       </profile>
     </annotationProcessing>
-  </component>
-  <component name="ErlangCompilerOptions">
-    <useRebarCompiler>true</useRebarCompiler>
   </component>
 </project>
